@@ -26,3 +26,6 @@ Trabajaremos con 6 tablas que se encuentran conectadas entre si para saber produ
 # Diagrama de DER
 
 Como podemos ver todas nuestras tablas se conectan entre si, cada una de las tablas obtiene datos detallados de otras, en el proceso de expancion que tiene previsto la empresa se iran agregando mas en el diagrama para no dejar nada librado al azar y poder ser una de las empresas mas competitivos en latinoamerica. 
+
+![image](https://github.com/Rodrigogaleann/Proyecto_SQL/assets/141097778/e71b4a64-8ba0-447b-8b81-bda77abc7b33)
+
