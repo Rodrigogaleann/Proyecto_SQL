@@ -206,6 +206,7 @@ SELECT proyecto_ecommerce.precios_con_iva(:id_producto);
 
 - ***ESTRUCTURA***
 ```sql
+
 drop trigger if exists trg_check_ventas ;
 delimiter //
 create trigger trg_check_ventas
@@ -220,6 +221,7 @@ begin
 end; //
 
 DELIMITER
+
 ```
 ___
 
@@ -231,7 +233,8 @@ ___
 >Si se realiza una venta de un producto del cual solo habia 6 unidades al descontar la unidad vendida saldra un cartel alertando al sector correspondiente que quedan pocas unidades.
 
 - ***ESTRUCTURA***
-  ```sql
+```sql
+
 drop trigger if exists check_stock;
 DELIMITER //
 create trigger check_stock 
@@ -246,6 +249,7 @@ begin
 end; //
 
 DELIMITER
+
 ```
 
 ___
@@ -258,7 +262,8 @@ ___
 >Si un cliente su primera vez realizo una compra por tienda web y al tiempo se acerco hacia alguna de nuestras sucursales y modifico el email , podremos tener un registro del mismo de quien lo hizo y en que sucursal se encontraba.
 
 - ***ESTRUCTURA***
-  ```sql
+```sql
+
 drop trigger if exists logs_clientes
 DELIMITER //
 create trigger logs_clientes
@@ -279,4 +284,44 @@ for each row
    end //
    
    DELIMITER
+
 ```
+
+# BACKUP
+
+Vamos dar el paso a paso de como hacer un back si es que se lo requiere desde la interfaz worckbench
+
+* **PRIMERO**
+Vamos al apartado del lado derecho de la pantalla, encontraremos 2 solapas, hacemos clicks en ADMINISTRATION.
+<img width="950" alt="BACK 1" src="https://github.com/user-attachments/assets/664f33ad-dcd6-4111-962b-0dde60be2a25">
+
+* **SEGUNDO**
+Seleccionamos la opcion EXPORT
+<img width="950" alt="BACK 2" src="https://github.com/user-attachments/assets/799673a1-a25d-44c3-91d2-d817e69740e6">
+
+* **TERCERO**
+Luego traera todas las bases de datos. Seleccionamos la bases a la cual queremos realzar el backup
+<img width="950" alt="BACK 3" src="https://github.com/user-attachments/assets/fdea1edf-189e-41d0-9771-f6bfb6f0d853">
+
+* **CUARTO**
+A continuacion nos traera todas las tablas y objetos que tenga esa base de datos.
+
+Tenemos una solapa en donde podemor seleccionar que queremos que nos traiga si la estructura con los datos, solo los datos o solo la estructura (color verde)
+<img width="950" alt="BACK 4" src="https://github.com/user-attachments/assets/371c223f-68a0-4ece-b13c-fd62842e8e2e">
+
+* **QUINTO**
+Mas abajo encontraremos un apartado donde podemos tambien seleccionar si queremos que nos guarde los TRIGGER, VISTAS o LOS PROCEDIMIENTOS.
+
+<img width="950" alt="BACK 5 3" src="https://github.com/user-attachments/assets/ab183645-abfb-409d-b2eb-19323896f485">
+
+
+* **SEXTO**
+Una vez seleccionado lo que queremos que nos traga , seleccionamos la carpeta o direccion  donde queremos guardar todos los datos
+
+<img width="950" alt="BACK 5" src="https://github.com/user-attachments/assets/2cb8f2d1-a3a8-4daf-973a-27c7fba109de">
+
+
+* **SEPTIMO**
+Y por ultimo vamos a la solapa EXPORT PROGRESS y damos click en el boton que dice START EXPORT y comienza el proceso.
+
+<img width="930" alt="BACK 7" src="https://github.com/user-attachments/assets/3aefc3c1-a7a2-44c3-8bf4-e61d65bbb996">
