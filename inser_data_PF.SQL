@@ -1,5 +1,6 @@
 
 --insercion de datos de la tabla clientes
+--insercion de datos de la tabla clientes
 
 INSERT INTO clientes  (nombre, apellido, domicilio, pais, email, activo) 
   VALUES
@@ -21,6 +22,7 @@ INSERT INTO clientes  (nombre, apellido, domicilio, pais, email, activo)
  
 
 --insercion de datos de la tabla Porductos
+--insercion de datos de la tabla Porductos
 
 insert into producto ( descripcion, cantidad, precio, nombre_producto) values ( 'Mouse inalambrico 15000 dpi RGB', 10 , 37046.62, 'Mouse Inalambrico');
 insert into producto ( descripcion, cantidad, precio, nombre_producto) values ( 'Teclado retoriluminado RGB MECANICO', 2, 10112.41, 'Teclado logitech');
@@ -37,6 +39,7 @@ insert into producto ( descripcion, cantidad, precio, nombre_producto) values ( 
 select * from producto
 
 --insercion de datos de la tabla Proveedores
+--insercion de datos de la tabla Proveedores
 
 insert into proveedores ( nombre_prov, domicilio_prov, email_prov) values ( 'Orn and Sons', 'Room 1598', 'lduchesne0@columbia.edu');
 insert into proveedores ( nombre_prov, domicilio_prov, email_prov) values ( 'Bernier Group', 'Suite 56', 'tmelchior1@wufoo.com');
@@ -50,6 +53,7 @@ insert into proveedores ( nombre_prov, domicilio_prov, email_prov) values ( 'Gle
 insert into proveedores ( nombre_prov, domicilio_prov, email_prov) values ('Cummings, Greenfelder and Cronin', 'Apt 1226', 'mmitchelson9@sfgate.com');
 
 
+--insercion de datos de la tabla depositos
 --insercion de datos de la tabla depositos
 
 INSERT INTO depositos (domicilio_dep, email, provincia)
@@ -66,6 +70,7 @@ VALUES
     ('Plaza Mayor 357', 'usuario10@proecommerce.com', 'Chubut');
     
  --insercion de datos de la tabla compras
+--insercion de datos de la tabla compras
  
 INSERT INTO compras (id_cliente_num, pago, fecha, id_porducto_compra, cantidad, precio)
 VALUES
@@ -90,6 +95,7 @@ VALUES
   (18, true, '2023-08-04 21:25:22', 3, 1, 650.00),
   (24, false, '2024-03-30 10:13:08', 6, 1, 23000.00);
   
+ --insercion de datos de la tabla productos_compras
  --insercion de datos de la tabla productos_compras
  
 insert into productos_compras (id_compras_producto ,id_producto_compra)
@@ -116,7 +122,8 @@ insert into productos_compras (id_compras_producto ,id_producto_compra)
      (20,6);
      
 --insercion de datos de la depositos_productos
-   
+--insercion de datos de la depositos_productos
+
  INSERT INTO depositos_productos (Id_Producto, Id_Depositos) VALUES
 (3, 5),
 (10, 2),
@@ -131,6 +138,7 @@ insert into productos_compras (id_compras_producto ,id_producto_compra)
 (11, 1),
 (8, 7);
 
+--insercion de datos de la proveedores_productos
 --insercion de datos de la proveedores_productos
 
 INSERT INTO PROVEEDORES_PRODUCTOS (Id_Producto, Id_Proveedores) VALUES
@@ -153,6 +161,8 @@ update proveedores
 set Dias_entregas = 'Miercoles y Jueves'
 where id_proveedores = 7
   
+-- INSERCION DE DATOS DE LOS DIAS DE ENTREGA DE PROVEEDORES
+-- INSERCION DE DATOS DE LOS DIAS DE ENTREGA DE PROVEEDORES
 
 insert into proveedores (Dias_entregas)
   values  ('Lunes y miercoles'),
@@ -165,3 +175,93 @@ insert into proveedores (Dias_entregas)
           ('Miercoles y Jueves y Sabados'),
           ('martes y jueves'),
           ('Lunes , Miercoles y Sabados');
+
+--INSERCION DE DATOS DE VENDEDORES
+--INSERCION DE DATOS DE VENDEDORES
+
+INSERT INTO vendedores (Nombre, Apellido, Fecha_Ingreso, Id_Sucursal) VALUES
+('Juan', 'Pérez', '2020-03-15', 7),
+( 'María', 'González', '2024-06-20', 3),
+( 'Pedro', 'López', '2022-01-10', 1),
+( 'Lucía', 'Fernández', '2024-08-05', 6),
+( 'Carlos', 'Martínez', '2020-10-30', 2),
+( 'Sofía', 'Díaz', '2024-02-14', 4),
+( 'Diego', 'Hernández', '2022-11-18', 10),
+( 'Valentina', 'Sánchez', '2020-05-25', 5),
+( 'Matías', 'García', '2024-09-13', 1),
+( 'Juana', 'Torres', '2022-07-09', 8),
+( 'Lucas', 'Mendoza', '2020-12-22', 9),
+( 'Camila', 'Ramírez', '2022-04-28', 3),
+( 'Renato', 'Cruz', '2024-01-07', 2),
+( 'Mariana', 'Vargas', '2020-08-17', 10),
+( 'Nicolás', 'Moreno', '2024-03-19', 6),
+( 'Valeria', 'Rojas', '2022-10-12', 4),
+( 'Federico', 'Reyes', '2020-11-11', 8),
+( 'Agustina', 'Jiménez', '2024-05-27', 7),
+( 'Andrés', 'Castro', '2022-09-23', 5),
+( 'Cecilia', 'Aguilar', '2024-07-30', 9);
+
+--Insercion de datos de sucursales
+--Insercion de datos de sucursales
+
+INSERT INTO sucursales (Nombre_Sucursal, Provincia) VALUES
+('tienda_web','Virtual'),
+('Nuevo Buenos Aires', 'Buenos Aires'),
+('Nuevo Catamarca', 'Catamarca'),
+('Nuevo Chaco', 'Chaco'),
+('Nuevo Chubut', 'Chubut'),
+('NuevoCórdoba', 'Córdoba'),
+('Nuevo Corrientes', 'Corrientes'),
+('Nuevo Entre Ríos', 'Entre Ríos'),
+('Nuevo Formosa', 'Formosa'),
+('Nuevo Jujuy', 'Jujuy'),
+('Nuevo La Pampa', 'La Pampa'),
+('Nuevo La Rioja', 'La Rioja'),
+('Nuevo Mendoza', 'Mendoza'),
+('Nuevo Misiones', 'Misiones'),
+('Nuevo Neuquén', 'Neuquén'),
+('Nuevo Río Negro', 'Río Negro'),
+('Nuevo Salta', 'Salta'),
+('Nuevo San Juan', 'San Juan'),
+('Nuevo San Luis', 'San Luis'),
+('Nuevo Santa Cruz', 'Santa Cruz'),
+('Nuevo Santa Fe', 'Santa Fe');
+
+--INSERCION DE DATOS A TABLA VENDEDRORS_COMPRAS PARA UNA OPTIMIZACION 
+insert into Vendedores_Compras(Id_Vendedores,Id_Compras,Fecha)  values 
+ (1,1,'2022-05-10'),
+ (3,1,'2022-05-15'),
+ (3,1,'2022-07-08'),
+ (7,2,'2022-11-22'),
+ (16,5,'2022-10-03'),
+ (10,7,'2023-01-04'),
+ (8,3,'2023-01-20'),
+ (9,5,'2023-02-23'),
+ (10,10,'2023-02-24'),
+ (15,3,'2023-03-04'),
+ (11,4,'2023-03-10'),
+ (12,1,'2023-04-01'),
+ (12,1,'2023-04-10'),
+ (2,10,'2023-05-11'),
+ (4,9,'2023-06-29'),
+ (5,8,'2023-06-30'),
+ (14,3,'2023-07-06'),
+ (20,10,'2023-10-07'),
+ (19,4,'2024-03-05'),
+ (18,1,'2024-04-10');
+
+--INSERCION DE DATOS DE PAGOS A PROVEEDORES.
+--INSERCION DE DATOS DE PAGOS A PROVEEDORES.
+
+INSERT INTO Pagos_Proveedores (Id_Proveedores, Monto, Fecha)
+VALUES
+(8, 123456.78, '2022-01-15 10:00:00'),
+(3, 987654.32, '2021-11-20 14:30:00'),
+(1, 654321.09, '2022-03-01 08:00:00'),
+(6, 345678.90, '2021-09-12 16:45:00'),
+(9, 567890.12, '2022-02-22 11:15:00'),
+(5, 234567.89, '2021-10-05 09:00:00'),
+(2, 890123.45, '2022-04-10 13:30:00'),
+(7, 456789.01, '2021-08-25 10:45:00'),
+(4, 122111.22, '2022-01-28 14:00:00'),
+(10, 223222.33, '2021-12-15 09:30:00');
