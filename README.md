@@ -1,3 +1,6 @@
+![image](https://github.com/user-attachments/assets/2b22b442-f605-4815-85af-dc137cffa16b)
+
+
 # Proyecto_SQL_E-COMMERCE
 
 ## Problema
@@ -165,4 +168,115 @@ SELECT proyecto_ecommerce.precios_con_iva(:id_producto);
 
 ```sql
    call etl_dias_entregas_proveedor
+```
+
+# ENTREGA FINAL
+
+*TRIGGER, que cumplen una funcion escencial en el proyecto ya que son disparadores que se ejecutan antes o despues de una accion.
+*BACKUP de tablas, datos, procediminetos , vistas y tiggers
+*Usuarios, generacion de los mismos para que cada sector tenga un acceso a cada una de sus herramientas.
+*NUEVAS TABLAS, para seguir teniendo una mejor optimizacion de las tablas y una mejor integridad se generaron 6 nuevas tablas, de las cuales una table es para auditorias sobre modoficaciones de clientes tomando los datos de sucursal y numeros de vendedr.
+
+### NUEVAS TABLAS
+
+![image](https://github.com/user-attachments/assets/beea56b9-f00d-4a0c-a2fc-b509e043ac0e)
+
+- ***VEDEDORES*** : Tabla creada con datos de los vendedores desde su nombre y apellido hasta fecha de ingreso y el numero de sucursal actual.
+
+- ***SUCURSALES*** : Tabla creada con el fin identificar las mismas con un numero unico, su nombre y provincia en la que se encuentra.
+
+- ***VENDEDORES_COMPRAS***: Con el fin de optimizar mejor las relaciones y no tener redundancias de datos se creo una tabla intermedia entre COMPRAS y VENDEDORES para tener mas a mano la informacion de quien hizo cada venta.
+
+- ***PAGOS_PROVEEDORES***: Se creo una tabla de transacciones para registrar todos los pagos a proveedores con su fecha y hora de cada transaccion realizada.
+
+
+- ***LOGS_CLIENTES***: Tabla de registro, es una tabla que no tiene relacion con niniguna pero que guarda cada modificacion que se haga en cada cliente tomando los datos nuevos si los hay y que usuario los modifiico, con la fecha y hora.
+
+![image](https://github.com/user-attachments/assets/4ec66505-083a-4073-9cf6-64a7d24e88ab)
+
+
+### TRIGGER
+
+> * "trg_check_ventas
+
+> Este TRIGGERS se ejecuta DESPUES de agregar una venta que supera los $50.000.-, automaticamente se disparara si la venta suepra ese monto un mensaje que el cliente accede a un descuento que dispondra la empresa.
+
+*Ejemplo
+>Si un cliente realiza una compra de una notebook o de varios productos que superan el monto total de $50.000.- automaticamente acccede al descuento para su proxima compra.
+
+- ***ESTRUCTURA***
+```sql
+drop trigger if exists trg_check_ventas ;
+delimiter //
+create trigger trg_check_ventas
+after insert on proyecto_ecommerce.compras 
+for each row
+begin 
+	
+	if new.precio > 50000  then 
+	signal sqlstate '45000'
+	set message_text = 'Obtuvo un cupon de descuento de 15% en su proxima compra';
+    end if;
+end; //
+
+DELIMITER
+```
+___
+
+> * "check_stock
+
+>Creado para alertar al sector administracion cada vez que un stock baje menos de 5 unidades y lograr a tiempo su reposicion.
+
+*Ejemplo
+>Si se realiza una venta de un producto del cual solo habia 6 unidades al descontar la unidad vendida saldra un cartel alertando al sector correspondiente que quedan pocas unidades.
+
+- ***ESTRUCTURA***
+  ```sql
+drop trigger if exists check_stock;
+DELIMITER //
+create trigger check_stock 
+before update on proyecto_ecommerce.producto 
+for each row 
+begin 
+	
+	if new.cantidad < 5 then 
+		signal sqlstate '45000'
+	set message_text = 'Se agota el stock, realizar pedido';
+    end if;
+end; //
+
+DELIMITER
+```
+
+___
+
+> * "Logs_clientes
+
+>Este TRIGGERS fue creado con el fin de guardar cualquier modificacion que se haga sobre los datos de un cliente asi tomando el usuario que lo hizo , la fecha y el horario.
+
+*Ejemplo
+>Si un cliente su primera vez realizo una compra por tienda web y al tiempo se acerco hacia alguna de nuestras sucursales y modifico el email , podremos tener un registro del mismo de quien lo hizo y en que sucursal se encontraba.
+
+- ***ESTRUCTURA***
+  ```sql
+drop trigger if exists logs_clientes
+DELIMITER //
+create trigger logs_clientes
+after update on proyecto_ecommerce.clientes 
+for each row  
+   begin    
+        
+	   insert into proyecto_ecommerce.logs_clientes
+	   (Nombre,Apellido,Email_update,Usuario_update,Fecha_modificacion)
+	   values (
+	      new.Nombre ,
+	      new.apellido,
+	      new.Email,
+	      session_user(),
+	      now()
+	   );
+	   
+   end //
+   
+   DELIMITER
 ```
