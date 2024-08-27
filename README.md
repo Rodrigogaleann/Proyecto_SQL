@@ -325,3 +325,7 @@ Una vez seleccionado lo que queremos que nos traga , seleccionamos la carpeta o 
 Y por ultimo vamos a la solapa EXPORT PROGRESS y damos click en el boton que dice START EXPORT y comienza el proceso.
 
 <img width="930" alt="BACK 7" src="https://github.com/user-attachments/assets/3aefc3c1-a7a2-44c3-8bf4-e61d65bbb996">
+
+Al realizar este backup los que nos traera sera toda la infrormacion desde las tablas , esquemas y datos que completan la database creada.
+
+El paso a paso indicado se realizo desde la interfaz de WORCKBENCH.
